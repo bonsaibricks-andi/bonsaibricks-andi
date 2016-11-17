@@ -4,39 +4,36 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<script>
+    (function(){
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect != location.href) {
+      history.replaceState(null, null, redirect);
+      }
+    })();
+	</script>
+	<link rel="stylesheet" href="dist/styles/main.css">
+  <base href="/">
+  <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="js/all.min.js"></script>
+  <!-- 2. Configure SystemJS -->
+  <script src="js/systemjs.config.min.js"></script>
+  <script>
+    System.import('app').catch(function(err){ console.error(err); });
+  </script>
 
 	<title>Bonsai Bricks</title>
 	<link rel="stylesheet" href="styles/main.css">
 
 </head>
-
-<body>	
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<ul class="nav navbar-nav">
-				<li><a href="#">Nav Item 1</a></li>
-				<li><a href="#">Nav Item 2</a></li>
-				<li><a href="#">Nav Item 3</a></li>
-			</ul>
-		</div>
-	</nav>
-	<section class="page-section--blue">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Test</h1>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="page-section--orange">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Test</h1>
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+  <!-- 3. Display the application -->
+  <body>
+    <app>Loading...</app>
+  </body>
 </html>
